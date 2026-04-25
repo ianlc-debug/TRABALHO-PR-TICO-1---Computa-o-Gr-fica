@@ -1,1 +1,1 @@
-# TRABALHO-PR-TICO-1---Computa-o-Gr-fica
+# TRABALHO 1 - Computação Gráfica
