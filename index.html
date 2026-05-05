@@ -2,19 +2,32 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Palco 3D com Tênis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palco 3D - Nike</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Limpa o erro de favicon no console -->
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+  <!-- Import Map: Essencial para resolver os módulos do Three.js -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160/examples/jsm/"
+      }
+    }
+  </script>
 </head>
 <body>
 
 <div id="ui">
   <label>Cor do tênis:</label>
-  <input type="color" id="colorPicker" value="#ff0000">
+  <input type="color" id="colorPicker" value="#ffffff">
 
   <label>Velocidade do palco:</label>
   <input type="range" id="speed" min="0" max="0.1" step="0.001" value="0.01">
 </div>
 
-<script type="module" src="script.js"></script>
+<script type="module" src="main.js"></script>
 </body>
 </html>
