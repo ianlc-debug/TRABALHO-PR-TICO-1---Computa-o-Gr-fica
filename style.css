@@ -1,21 +1,36 @@
-body {
+/* remove margens padrão */
+
+* {
   margin: 0;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-  background: #111;
-  color: white;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+/* ocupa a tela inteira */
+body {
+overflow: hidden;
+font-family: Arial, sans-serif;
+background: #111;
+color: white;
 }
 
-#ui {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: rgba(0,0,0,0.6);
-  padding: 10px;
-  border-radius: 8px;
+/* container do canvas */
+#app {
+width: 100vw;
+height: 100vh;
+position: relative;
 }
 
-label {
-  display: block;
-  margin-top: 8px;
+/* canvas do Three.js */
+canvas {
+display: block;
+}
+
+/* opcional: título flutuante */
+.title {
+position: absolute;
+top: 20px;
+left: 20px;
+font-size: 18px;
+opacity: 0.8;
 }
