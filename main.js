@@ -66,6 +66,11 @@ function init() {
             currentShoe.position.sub(center);
             //Ajustando a posição do tênis para que fique no chão:
             currentShoe.position.y = -0.35;
+            if(fileName == 'adidas_ozelia' ) {
+                currentShoe.scale.set(0.5, 0.5, 0.5);
+                currentShoe.position.y = -0.79;
+                currentShoe.rotation.y += 5;
+            }
 
             scene.add(currentShoe);
         });
