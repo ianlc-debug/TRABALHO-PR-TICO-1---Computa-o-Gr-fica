@@ -8,16 +8,28 @@
 <body>
     <div id="canvas-container"></div>
 
+    // Controles de customização e brilho
     <nav class="controls-top">
         <div class="control-group">
-            <label>Cor do Tênis</label>
+            <label>Customização por Parte</label>
+            
+            <select id="partSelector" style="display: block; margin-bottom: 10px; width: 100%; padding: 4px; border-radius: 4px;">
+                <option value="TUDO">Tênis Inteiro</option>
+                <option value="Object_2">Parte 2 (Sola/Base)</option>
+                <option value="Object_3">Parte 3</option>
+                <option value="Object_4">Parte 4</option>
+                <option value="Object_5">Parte 5</option>
+            </select>
+
             <div class="color-picker">
-                <button class="color-btn" data-color="#ff0000" style="background: red;"></button>
-                <button class="color-btn" data-color="#0000ff" style="background: blue;"></button>
-                <button class="color-btn" data-color="#ffffff" style="background: white;"></button>
-                <button class="color-btn" data-color="#333333" style="background: black;"></button>
+                <button class="color-part-btn" data-color="#ff0000" style="background: red;"></button>
+                <button class="color-part-btn" data-color="#0000ff" style="background: blue;"></button>
+                <button class="color-part-btn" data-color="#ffffff" style="background: white;"></button>
+                <button class="color-part-btn" data-color="#333333" style="background: black;"></button>
+                <button class="color-part-btn" data-color="#00ff00" style="background: green;"></button>
             </div>
         </div>
+
         <div class="control-group">
             <label>Brilho da Luz</label>
             <input type="range" id="lightIntensity" min="0" max="10" step="0.1" value="2">
