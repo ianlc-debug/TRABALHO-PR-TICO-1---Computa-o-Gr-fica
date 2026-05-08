@@ -12,9 +12,9 @@ function init() {
 
     // Carregando o ficheiro HDRI (.exr)
     new EXRLoader().load('models/ferndale_studio_04_4k.exr', (texture) => {
-    texture.mapping = THREE.EquirectangularReflectionMapping;
-    scene.background = texture;
-    scene.environment = texture;
+        texture.mapping = THREE.EquirectangularReflectionMapping;
+        scene.background = texture;
+        scene.environment = texture;
     });
 
     //Ponto de visão do usuário(Câmera):
@@ -64,17 +64,17 @@ function init() {
     const opacityMap = textureLoader.load('texturas/prata/Collection_VidroReflectaPrata_sl_opacity.jpg');
 
     // 3. Aplicar o novo material ao cilindro existente
-    floor.material = new THREE.MeshStandardMaterial({ 
-    map: baseColorMap,
-    metalnessMap: metallicMap,
-    roughnessMap: roughnessMap,
-    normalMap: normalMap,
-    metalness: 1.0
+    floor.material = new THREE.MeshStandardMaterial({
+        map: baseColorMap,
+        metalnessMap: metallicMap,
+        roughnessMap: roughnessMap,
+        normalMap: normalMap,
+        metalness: 1.0
     });
 
     // 4. Avisar ao Three.js para atualizar a renderização dessa peça
     floor.material.needsUpdate = true;
-    
+
     floor.position.y = -1;
     floor.receiveShadow = true;
     scene.add(floor);
@@ -85,8 +85,8 @@ function init() {
     const woodRoughness = textureLoader.load('textures/wood_texture/dark_wood_rough_2k.jpg');
 
     const woodCylinder = new THREE.Mesh(
-    new THREE.CylinderGeometry(4.0, 4.0, 0.56, 128), 
-    new THREE.MeshStandardMaterial({
+        new THREE.CylinderGeometry(4.0, 4.0, 0.56, 128),
+        new THREE.MeshStandardMaterial({
             map: woodColor,
             normalMap: woodNormal,
             roughnessMap: woodRoughness,
@@ -109,25 +109,28 @@ function init() {
 
     window.loadShoe = (fileName) => {
         if (currentShoe) {
-        rotatingBase.remove(currentShoe);
+            rotatingBase.remove(currentShoe);
         }
-        
+
         //Geometria complexa importada externamente (modelo 3D do tênis):
         loader.load(`models/${fileName}.glb`, (gltf) => {
             currentShoe = gltf.scene;
+
+
+
 
             //Ajustar a cor por parte depois
             //Fazendo o tenis gerar sombras:
             //imprimi no crtl+shift+i (console do navegador) os nomes das peças do tênis para facilitar a identificação e pintura depois
             currentShoe.traverse((child) => {
-            if (child.isMesh) {
-                child.castShadow = true;
-                child.receiveShadow = true;
-                // Esta linha imprime os nomes "Object_2", "Object_3", etc. no console (F12)
-                console.log("Peça encontrada:", child.name);
+                if (child.isMesh) {
+                    child.castShadow = true;
+                    child.receiveShadow = true;
+                    // Esta linha imprime os nomes "Object_2", "Object_3", etc. no console (F12)
+                    console.log("Peça encontrada:", child.name);
                 }
             });
-            
+
             const box = new THREE.Box3().setFromObject(currentShoe);
             const center = box.getCenter(new THREE.Vector3());
             currentShoe.position.sub(center);
@@ -136,7 +139,7 @@ function init() {
             currentShoe.scale.set(3, 3, 3);
             if (fileName == 'adidas_ozelia') {
                 currentShoe.scale.set(1.5, 1.5, 1.5);
-                currentShoe.position.y = -0.20;
+                currentShoe.position.y = -0.50;
                 currentShoe.rotation.y -= 5;
             }
 
@@ -172,7 +175,7 @@ document.querySelectorAll('.color-part-btn').forEach(btn => {
                 if (child.isMesh) {
                     // Verifica se deve pintar tudo ou apenas a peça selecionada no menu
                     if (selectedPart === "TUDO" || child.name === selectedPart) {
-                        
+
                         // Importante: Clonar o material para não pintar outras peças iguais por erro
                         child.material = child.material.clone();
                         child.material.color.set(color);
