@@ -4,7 +4,8 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 // iluminacao HDRI 
 import { EXRLoader } from 'three/addons/loaders/EXRLoader.js';
 let scene, camera, renderer, currentShoe, mainLight, controls;
-
+let rotatingBase;
+let rotationSpeed = 0.01;
 function init() {
     //Mundo 3D: scene = new THREE.Scene();
     scene = new THREE.Scene();
@@ -97,13 +98,19 @@ function init() {
     woodCylinder.position.y = -0.65;
     woodCylinder.receiveShadow = true;
     woodCylinder.castShadow = true;
-    scene.add(woodCylinder);
+
+    rotatingBase = new THREE.Group();
+    scene.add(rotatingBase);
+
+    rotatingBase.add(woodCylinder);
 
 
     const loader = new GLTFLoader();
 
     window.loadShoe = (fileName) => {
-        if (currentShoe) scene.remove(currentShoe);
+        if (currentShoe) {
+        rotatingBase.remove(currentShoe);
+        }
         
         //Geometria complexa importada externamente (modelo 3D do tênis):
         loader.load(`models/${fileName}.glb`, (gltf) => {
@@ -133,7 +140,7 @@ function init() {
                 currentShoe.rotation.y -= 5;
             }
 
-            scene.add(currentShoe);
+            rotatingBase.add(currentShoe);
         });
     };
 
@@ -145,6 +152,12 @@ function init() {
 function animate() {
     requestAnimationFrame(animate);
     controls.update();
+
+    if (rotatingBase) {
+        rotatingBase.rotation.y += rotationSpeed;
+    }
+
+
     renderer.render(scene, camera);
 }
 
@@ -189,6 +202,10 @@ document.querySelectorAll('.color-btn').forEach(btn => {
 
 document.querySelectorAll('.brand-item').forEach(btn => {
     btn.addEventListener('click', () => loadShoe(btn.dataset.brand));
+});
+
+document.getElementById('speedControl').addEventListener('input', (e) => {
+    rotationSpeed = parseFloat(e.target.value);
 });
 
 window.addEventListener('resize', () => {
