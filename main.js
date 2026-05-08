@@ -74,9 +74,31 @@ function init() {
     // 4. Avisar ao Three.js para atualizar a renderização dessa peça
     floor.material.needsUpdate = true;
     
-    floor.position.y = -0.8;
+    floor.position.y = -1;
     floor.receiveShadow = true;
     scene.add(floor);
+
+    // Cilindro achatado de madeira entre o tênis e a prateleira
+    const woodColor = textureLoader.load('textures/wood_texture/dark_wood_diff_2k.jpg');
+    const woodNormal = textureLoader.load('textures/wood_texture/dark_wood_nor_gl_2k.jpg');
+    const woodRoughness = textureLoader.load('textures/wood_texture/dark_wood_rough_2k.jpg');
+
+    const woodCylinder = new THREE.Mesh(
+    new THREE.CylinderGeometry(4.0, 4.0, 0.56, 128), 
+    new THREE.MeshStandardMaterial({
+            map: woodColor,
+            normalMap: woodNormal,
+            roughnessMap: woodRoughness,
+            roughness: 0.2,
+            metalness: 0.0
+        })
+    );
+
+    woodCylinder.position.y = -0.65;
+    woodCylinder.receiveShadow = true;
+    woodCylinder.castShadow = true;
+    scene.add(woodCylinder);
+
 
     const loader = new GLTFLoader();
 
@@ -103,11 +125,11 @@ function init() {
             const center = box.getCenter(new THREE.Vector3());
             currentShoe.position.sub(center);
             //Ajustando a posição do tênis para que fique no chão:
-            currentShoe.position.y = 0.64;
+            currentShoe.position.y = 1;
             currentShoe.scale.set(3, 3, 3);
             if (fileName == 'adidas_ozelia') {
                 currentShoe.scale.set(1.5, 1.5, 1.5);
-                currentShoe.position.y = -0.79;
+                currentShoe.position.y = -0.20;
                 currentShoe.rotation.y -= 5;
             }
 
