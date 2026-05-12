@@ -22,3 +22,5 @@ body { margin: 0; overflow: hidden; font-family: sans-serif; background: #eee; }
 
 .brand-item img { width: 30px; height: auto; }
 .color-btn { width: 25px; height: 25px; border-radius: 50%; border: 1px solid #000; cursor: pointer; }
+
+.color-part-btn { width: 25px; height: 25px; border: 1px solid #000; cursor: pointer; margin-right: 5px; }
