@@ -50,10 +50,10 @@ function init() {
     const textureLoader = new THREE.TextureLoader();
     const floorGeometry = new THREE.CylinderGeometry(6, 6, 0.2, 64);
     
-    const baseColorMap = textureLoader.load('texturas/prata/Collection_VidroReflectaPrata_sl_basecolor.jpg');
-    const metallicMap = textureLoader.load('texturas/prata/Collection_VidroReflectaPrata_sl_metallic.jpg');
-    const normalMap = textureLoader.load('texturas/prata/Collection_VidroReflectaPrata_sl_normal.jpg');
-    const roughnessMap = textureLoader.load('texturas/prata/Collection_VidroReflectaPrata_sl_roughness.jpg');
+    const baseColorMap = textureLoader.load('textures/Collection_VidroReflectaPrata_sl_basecolor.jpg');
+    const metallicMap = textureLoader.load('textures/Collection_VidroReflectaPrata_sl_metallic.jpg');
+    const normalMap = textureLoader.load('textures/Collection_VidroReflectaPrata_sl_normal.jpg');
+    const roughnessMap = textureLoader.load('textures/Collection_VidroReflectaPrata_sl_roughness.jpg');
 
     const floorMaterial = new THREE.MeshStandardMaterial({
         map: baseColorMap,
