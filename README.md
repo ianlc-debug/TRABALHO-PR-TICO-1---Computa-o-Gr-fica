@@ -1,66 +1,240 @@
 # 👟 E-commerce 3D de Tênis
 
-Este projeto é um protótipo de e-commerce interativo que utiliza **Three.js** para renderizar modelos de calçados em tempo real diretamente no navegador. O usuário pode visualizar, girar e personalizar produtos de marcas como Nike e Adidas em um ambiente tridimensional.
+Projeto de vitrine virtual interativa desenvolvido com **HTML**, **CSS**, **JavaScript** e **Three.js**, permitindo a visualização de tênis em ambiente 3D com customização de cores, controle de iluminação e rotação dinâmica.
 
 ---
 
-## 🚀 Funcionalidades
+# 📸 Preview
 
-*   **Visualização Interativa:** Rotação de 360°, zoom e movimentação de câmera.
-*   **Seleção de Marcas:** Alternância rápida entre modelos da **Nike** e **Adidas**.
-*   **Customização Dinâmica:** Alteração de cores de partes específicas do tênis ou do objeto inteiro.
-*   **Iluminação Realista:** Controle de brilho da luz e uso de ambiente HDRI.
-*   **Base Rotatória:** O tênis é exibido sobre uma base de madeira que gira automaticamente.
+O projeto apresenta:
 
----
-
-## 🛠️ Tecnologias Utilizadas
-
-*   **Three.js**: Biblioteca principal para renderização 3D.
-*   **JavaScript (ES6+)**: Lógica de interação e controle de materiais.
-*   **HTML5 & CSS3**: Interface de menus e layout responsivo.
-*   **GLTFLoader**: Carregamento dos modelos 3D (.glb).
+- Visualização 3D de tênis em tempo real
+- Ambiente HDRI realista
+- Troca de modelos de tênis
+- Controle de iluminação
+- Alteração de cor do produto
+- Base rotativa animada
+- Controles de câmera com OrbitControls
 
 ---
 
-## 💻 Como Executar
+# 🚀 Tecnologias Utilizadas
 
-Devido às políticas de segurança de navegadores (CORS), o projeto deve ser rodado em um servidor local:
-
-1.  **Via VS Code:**
-    *   Instale a extensão **Live Server**.
-    *   Clique com o botão direito no arquivo `index.html`.
-    *   Selecione **"Open with Live Server"**.
-2.  **Via Terminal (Python):**
-    *   Na pasta do projeto, digite: `python -m http.server`.
-    *   Acesse `http://localhost:8000` no seu navegador.
+- HTML5
+- CSS3
+- JavaScript (ES Modules)
+- [Three.js](https://threejs.org/)
+- GLTFLoader
+- OrbitControls
+- EXRLoader
 
 ---
 
-## 🎨 Como Customizar (Direto no Código)
+# 📂 Estrutura do Projeto
 
-Você pode ajustar o comportamento do projeto modificando os seguintes pontos:
+```bash
+📁 projeto/
+│
+├── index.html
+├── style.css
+├── main.js
+│
+├── 📁 models/
+│   ├── nike_air_zoom_pegasus_36.glb
+│   ├── adidas_ozelia.glb
+│   └── ferndale_studio_04_4k.exr
+│
+├── 📁 logos/
+│   ├── logo nike.png
+│   └── logo adidas.png
+│
+├── 📁 texturas/
+│   └── prata/
+│
+└── 📁 textures/
+    └── wood_texture/
+```
 
-### 1. Mudança de Cores
-Para adicionar ou alterar as cores disponíveis no painel:
-*   No **HTML**, localize a `div` com a classe `.color-picker`.
-*   Altere o atributo `data-color` (usado pelo JavaScript) e o `style="background: ..."` (exibido para o usuário).
-*   *Exemplo:* `<button class="color-part-btn" data-color="#FF5733" style="background: #FF5733;"></button>`
+---
 
-### 2. Ajuste de Iluminação
-Para alterar a intensidade padrão ou os limites de luz:
-*   No **HTML**, procure o input com ID `lightIntensity`. 
-*   Altere o `value` para mudar o brilho inicial ou `max` para permitir luzes mais fortes.
-*   No **JavaScript**, você pode mudar a cor da luz principal na linha: `mainLight = new THREE.DirectionalLight(0xffffff, 2);` (alterando o hexadecimal).
+# ⚙️ Funcionalidades
 
-### 3. Velocidade de Rotação da Plataforma
-A plataforma de madeira gira automaticamente para exibir o produto. Para ajustar isso:
-*   **Via Interface:** Use o slider "Velocidade de rotação".
-*   **Via Código (Valor Inicial):** No **JavaScript**, altere a variável `let rotationSpeed = 0.01;`.
-*   **Limites do Slider:** No **HTML**, altere os atributos `min`, `max` e `step` do input `speedControl`.
+## 🎨 Customização de Cor
 
-### 4. Identificar Partes do Tênis
-Ao carregar um modelo, abra o **Console do Navegador (F12)**. O código lista o nome de cada peça (ex: `Object_2`, `Object_3`). 
-Para permitir que o usuário pinte uma peça específica, adicione o nome dela no `<select>` do HTML:
+O usuário pode alterar a cor do tênis através dos botões interativos.
+
+Cores disponíveis:
+
+- Vermelho
+- Azul
+- Branco
+- Preto
+- Verde
+
+---
+
+## 💡 Controle de Iluminação
+
+Slider para ajuste da intensidade da luz direcional da cena.
+
+```js
+mainLight.intensity = parseFloat(e.target.value);
+```
+
+---
+
+## 🔄 Controle de Rotação
+
+Permite alterar a velocidade de rotação da base do produto.
+
+```js
+rotationSpeed = parseFloat(e.target.value);
+```
+
+---
+
+## 👟 Troca de Modelos
+
+O sistema permite carregar diferentes modelos `.glb` dinamicamente.
+
+```js
+loadShoe('nike_air_zoom_pegasus_36');
+```
+
+---
+
+# 🧠 Conceitos 3D Aplicados
+
+## 🌍 HDRI Environment
+
+Uso de arquivo `.exr` para iluminação e reflexos realistas.
+
+```js
+scene.environment = texture;
+scene.background = texture;
+```
+
+---
+
+## 🪵 Materiais PBR
+
+Aplicação de:
+
+- Base Color
+- Roughness
+- Normal Map
+- Metallic Map
+
+Para criar superfícies realistas.
+
+---
+
+## 🎥 OrbitControls
+
+Permite:
+
+- Rotacionar câmera
+- Zoom
+- Navegação suave
+
+```js
+controls.enableDamping = true;
+```
+
+---
+
+# ▶️ Como Executar o Projeto
+
+## 1. Clone o repositório
+
+```bash
+git clone https://github.com/seu-usuario/seu-projeto.git
+```
+
+---
+
+## 2. Abra a pasta do projeto
+
+```bash
+cd seu-projeto
+```
+
+---
+
+## 3. Execute um servidor local
+
+Como o projeto usa módulos ES6 e carregamento de assets 3D, é necessário usar um servidor local.
+
+### Usando VS Code + Live Server
+
+Instale a extensão:
+
+- Live Server
+
+Depois:
+
+- Clique com o botão direito em `index.html`
+- Selecione `Open with Live Server`
+
+---
+
+# 📦 Dependências
+
+As bibliotecas são carregadas diretamente via CDN:
+
 ```html
-<option value="NOME_DA_PECA_VISTO_NO_CONSOLE">Descrição da Peça</option>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+```
+
+---
+
+# 🖼️ Assets Necessários
+
+O projeto utiliza:
+
+## Modelos 3D
+
+- `.glb`
+
+## Ambiente HDRI
+
+- `.exr`
+
+## Texturas PBR
+
+- `.jpg`
+
+---
+
+# 🎮 Controles do Usuário
+
+| Controle | Função |
+|---|---|
+| Botão esquerdo do Mouse | Rotacionar câmera |
+| Scroll | Zoom |
+| Slider de brilho | Ajustar iluminação |
+| Slider de rotação | Velocidade da base |
+| Botões de cor | Alterar cor do tênis |
+| Botões de marca | Trocar modelo |
+
+---
+
+# 👨‍💻 Autores
+
+Desenvolvido pela equipe 
+- Antônio Matheus da Costa Queiroz
+- Augusto Rodrigues Paz Gregório
+- Davi Gomes Rocha
+- Davi Moura Guedes
+- Ian Lopes Costa
+- José Arthur Gomes Azevedo
+- Marcelo Henrique Teixeira de Souza Alves
+
+---
