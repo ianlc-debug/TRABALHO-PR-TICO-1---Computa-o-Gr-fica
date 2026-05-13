@@ -48,11 +48,9 @@ O projeto apresenta:
 │   ├── logo nike.png
 │   └── logo adidas.png
 │
-├── 📁 texturas/
-│   └── prata/
-│
 └── 📁 textures/
     └── wood_texture/
+    └── prata/
 ```
 
 ---
