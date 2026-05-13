@@ -1,4 +1,4 @@
-# 👟 Tênis E-commerce 3D
+# 👟 E-commerce 3D de Tênis
 
 Este projeto é um protótipo de e-commerce interativo que utiliza **Three.js** para renderizar modelos de calçados em tempo real diretamente no navegador. O usuário pode visualizar, girar e personalizar produtos de marcas como Nike e Adidas em um ambiente tridimensional.
 
