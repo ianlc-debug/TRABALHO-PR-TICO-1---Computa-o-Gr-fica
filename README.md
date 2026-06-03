@@ -15,7 +15,7 @@ O projeto apresenta:
 - Alteração de cor do produto
 - Base rotativa animada
 - Controles de câmera com OrbitControls
-
+![Apresentação visual](Apresentação%20visual)
 ---
 
 # 🚀 Tecnologias Utilizadas
